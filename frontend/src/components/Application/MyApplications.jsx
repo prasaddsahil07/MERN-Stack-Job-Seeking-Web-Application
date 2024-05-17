@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
 
+
+
 const MyApplications = () => {
   const { user } = useContext(Context);
   const [applications, setApplications] = useState([]);
@@ -44,8 +46,7 @@ const MyApplications = () => {
 
   const deleteApplication = (id) => {
     try {
-      axios
-        .delete(`http://localhost:4000/api/v1/application/delete/${id}`, {
+        axios.delete(`http://localhost:4000/api/v1/application/delete/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -119,6 +120,9 @@ const MyApplications = () => {
 };
 
 export default MyApplications;
+
+
+
 
 const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
   return (

@@ -6,6 +6,9 @@ import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
 
+
+
+
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
   const [editingMode, setEditingMode] = useState(null);
@@ -16,8 +19,7 @@ const MyJobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const { data } = await axios.get(
-          "http://localhost:4000/api/v1/job/getmyjobs",
+        const { data } = await axios.get("http://localhost:4000/api/v1/job/getmyjobs",
           { withCredentials: true }
         );
         setMyJobs(data.myJobs);
@@ -46,8 +48,7 @@ const MyJobs = () => {
   //Function For Updating The Job
   const handleUpdateJob = async (jobId) => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
-    await axios
-      .put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
+    await axios.put(`http://localhost:4000/api/v1/job/update/${jobId}`, updatedJob, {
         withCredentials: true,
       })
       .then((res) => {

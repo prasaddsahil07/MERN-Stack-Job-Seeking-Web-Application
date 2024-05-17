@@ -3,14 +3,15 @@ import { dbConnection } from "./database/dbConnection.js";
 import jobRouter from "./routes/jobRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import applicationRouter from "./routes/applicationRoutes.js";
-import { config } from "dotenv";
+import dotenv from "dotenv"
 import cors from "cors";
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 import fileUpload from "express-fileupload";
 
+dotenv.config()
+
 const app = express();
-config({ path: "./config/config.env" });
 
 app.use(
   cors({
@@ -20,7 +21,7 @@ app.use(
   })
 );
 
-app.use(cookieParser());
+app.use(cookieParser());      // for authorization, cookie parser is mandatory
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
+import { DB_NAME } from "../constant.js";
 
-export const dbConnection = () => {
-  mongoose
-    .connect(process.env.MONGO_URI, {
-      dbName: "MERN_JOB_SEEKING_WEBAPP",
-    })
-    .then(() => {
-      console.log("Connected to database.");
-    })
-    .catch((err) => {
-      console.log(`Some Error occured. ${err}`);
-    });
+export const dbConnection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL, { dbName: DB_NAME });
+    console.log("MongoDB connected successfully!!");
+  } catch (error) {
+    console.log(`Some Error occurred. ${error}`);
+  }
 };

@@ -19,7 +19,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
   const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
   if (!allowedFormats.includes(resume.mimetype)) {
     return next(
-      new ErrorHandler("Invalid file type. Please upload a PNG file.", 400)
+      new ErrorHandler("Invalid file type. Please upload a PNG/JPG/WEBP file.", 400)
     );
   }
   const cloudinaryResponse = await cloudinary.uploader.upload(
@@ -33,7 +33,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     );
     return next(new ErrorHandler("Failed to upload Resume to Cloudinary", 500));
   }
-  const { name, email, coverLetter, phone, address, jobId } = req.body;
+  const { name, email, coverLetter, phone, address, jobId } = req.body;     // all these are present in schema
   const applicantID = {
     user: req.user._id,
     role: "Job Seeker",
@@ -77,13 +77,12 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
   });
   res.status(200).json({
     success: true,
-    message: "Application Submitted!",
+    message: "Application Submitted Successfully!",
     application,
   });
 });
 
-export const employerGetAllApplications = catchAsyncErrors(
-  async (req, res, next) => {
+export const employerGetAllApplications = catchAsyncErrors(async (req, res, next) => {
     const { role } = req.user;
     if (role === "Job Seeker") {
       return next(
@@ -99,8 +98,7 @@ export const employerGetAllApplications = catchAsyncErrors(
   }
 );
 
-export const jobseekerGetAllApplications = catchAsyncErrors(
-  async (req, res, next) => {
+export const jobseekerGetAllApplications = catchAsyncErrors(async (req, res, next) => {
     const { role } = req.user;
     if (role === "Employer") {
       return next(
@@ -116,8 +114,7 @@ export const jobseekerGetAllApplications = catchAsyncErrors(
   }
 );
 
-export const jobseekerDeleteApplication = catchAsyncErrors(
-  async (req, res, next) => {
+export const jobseekerDeleteApplication = catchAsyncErrors(async (req, res, next) => {
     const { role } = req.user;
     if (role === "Employer") {
       return next(
@@ -132,7 +129,7 @@ export const jobseekerDeleteApplication = catchAsyncErrors(
     await application.deleteOne();
     res.status(200).json({
       success: true,
-      message: "Application Deleted!",
+      message: "Application Deleted Successfully!",
     });
   }
 );

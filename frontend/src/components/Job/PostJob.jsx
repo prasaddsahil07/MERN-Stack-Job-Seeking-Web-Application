@@ -3,6 +3,9 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+
+
+
 const PostJob = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -21,7 +24,7 @@ const PostJob = () => {
     e.preventDefault();
     if (salaryType === "Fixed Salary") {
       setSalaryFrom("");
-      setSalaryFrom("");
+      setSalaryTo("");
     } else if (salaryType === "Ranged Salary") {
       setFixedSalary("");
     } else {
@@ -29,9 +32,7 @@ const PostJob = () => {
       setSalaryTo("");
       setFixedSalary("");
     }
-    await axios
-      .post(
-        "http://localhost:4000/api/v1/job/post",
+    await axios.post("http://localhost:4000/api/v1/job/post",
         fixedSalary.length >= 4
           ? {
               title,

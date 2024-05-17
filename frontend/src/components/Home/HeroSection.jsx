@@ -5,25 +5,25 @@ const HeroSection = () => {
   const details = [
     {
       id: 1,
-      title: "1,23,441",
+      title: Math.floor(Math.random() * 1000),
       subTitle: "Live Job",
       icon: <FaSuitcase />,
     },
     {
       id: 2,
-      title: "91220",
+      title: Math.floor(Math.random() * 100),
       subTitle: "Companies",
       icon: <FaBuilding />,
     },
     {
       id: 3,
-      title: "2,34,200",
+      title: Math.floor(Math.random() * 10000),
       subTitle: "Job Seekers",
       icon: <FaUsers />,
     },
     {
       id: 4,
-      title: "1,03,761",
+      title: Math.floor(Math.random() * 800),
       subTitle: "Employers",
       icon: <FaUserPlus />,
     },

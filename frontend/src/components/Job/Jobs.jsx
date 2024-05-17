@@ -9,8 +9,7 @@ const Jobs = () => {
   const navigateTo = useNavigate();
   useEffect(() => {
     try {
-      axios
-        .get("http://localhost:4000/api/v1/job/getall", {
+      axios.get("http://localhost:4000/api/v1/job/getall", {
           withCredentials: true,
         })
         .then((res) => {
@@ -32,7 +31,7 @@ const Jobs = () => {
           {jobs.jobs &&
             jobs.jobs.map((element) => {
               return (
-                <div className="card" key={element._id}>
+                <div className="card" key={element._id}>         
                   <p>{element.title}</p>
                   <p>{element.category}</p>
                   <p>{element.country}</p>
